@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aryan Mehta — Engineer & Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #f7f6f3;
+  --white:    #ffffff;
+  --navy:     #1b2d4f;
+  --navy2:    #243a63;
+  --slate:    #4a6080;
+  --teal:     #2a7f6f;
+  --teal-lt:  #e6f4f1;
+  --sand:     #e8e3da;
+  --border:   #ddd9d0;
+  --text:     #1b2d4f;
+  --muted:    #6b7a90;
+  --dim:      #a0aab8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.7;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(247,246,243,0.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:0.04em;}
+.nav-links{display:flex;gap:4px;list-style:none;}
+.nav-links button{background:none;border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:500;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;padding:7px 14px;border-radius:6px;transition:all 0.2s;}
+.nav-links button:hover{color:var(--navy);background:var(--sand);}
+.nav-links button.active{color:var(--teal);background:var(--teal-lt);}
+
+/* SECTION ENGINE */
+.section{display:none;}
+.section.active{display:block;animation:rise 0.45s cubic-bezier(0.22,1,0.36,1) both;}
+@keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+.page{max-width:1040px;margin:0 auto;padding:0 36px;}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:60px;display:flex;align-items:center;}
+.hero-inner{display:grid;grid-template-columns:1fr 310px;gap:72px;align-items:center;padding:72px 0;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--teal);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:22px;}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--teal);}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3.2rem,7vw,5rem);font-weight:700;line-height:1.0;color:var(--navy);letter-spacing:-0.02em;margin-bottom:20px;}
+.hero-name em{font-style:italic;color:var(--teal);}
+.hero-sub{font-size:1rem;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:36px;max-width:420px;}
+.hero-sub strong{color:var(--navy);font-weight:500;}
+.hero-ctas{display:flex;gap:12px;}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;border-radius:8px;font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.25s;text-decoration:none;border:none;font-family:'Outfit',sans-serif;}
+.btn-solid{background:var(--navy);color:#fff;}
+.btn-solid:hover{background:var(--navy2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(27,45,79,0.18);}
+.btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--navy);background:var(--white);}
+
+/* HERO CARD */
+.hero-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:0 4px 32px rgba(27,45,79,0.07);}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--teal-lt);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:18px;border:2px solid rgba(42,127,111,0.18);}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.card-role{font-size:0.8rem;color:var(--teal);font-weight:500;margin-bottom:18px;}
+.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.stat{background:var(--bg);border-radius:10px;padding:11px 13px;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:var(--navy);line-height:1;}
+.stat-l{font-size:0.7rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;}
+.avail{display:flex;align-items:center;gap:8px;margin-top:16px;padding:10px 13px;background:var(--teal-lt);border-radius:8px;font-size:0.77rem;color:var(--teal);font-weight:500;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
+
+/* SECTION HEADER */
+.s-header{padding:88px 0 44px;}
+.s-tag{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:10px;}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,2.8rem);font-weight:700;color:var(--navy);line-height:1.1;margin-bottom:12px;}
+.s-desc{color:var(--muted);font-size:0.95rem;max-width:480px;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-bottom:72px;align-items:start;}
+.about-bio p{color:var(--muted);margin-bottom:14px;font-size:0.93rem;line-height:1.8;}
+.about-bio p:first-child{color:var(--navy);font-size:0.97rem;}
+.timeline{border-left:2px solid var(--border);padding-left:24px;}
+.tl-item{margin-bottom:26px;position:relative;}
+.tl-item::before{content:'';position:absolute;left:-31px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--teal);border:2px solid var(--bg);}
+.tl-yr{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--teal);margin-bottom:4px;}
+.tl-t{font-weight:600;color:var(--navy);font-size:0.9rem;margin-bottom:2px;}
+.tl-s{color:var(--muted);font-size:0.83rem;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:72px;}
+.skill-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px;transition:all 0.3s;position:relative;overflow:hidden;}
+.skill-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--slate));opacity:0;transition:opacity 0.3s;}
+.skill-card:hover{box-shadow:0 8px 28px rgba(27,45,79,0.08);transform:translateY(-3px);}
+.skill-card:hover::after{opacity:1;}
+.sk-icon{font-size:1.5rem;margin-bottom:10px;}
+.sk-name{font-weight:600;color:var(--navy);margin-bottom:6px;font-size:0.88rem;}
+.sk-desc{font-size:0.8rem;color:var(--muted);line-height:1.6;margin-bottom:10px;}
+.sk-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:3px 8px;font-size:0.68rem;color:var(--slate);font-family:'JetBrains Mono',monospace;}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:72px;}
+.proj-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;}
+.proj-card:hover{box-shadow:0 12px 36px rgba(27,45,79,0.1);transform:translateY(-4px);border-color:rgba(42,127,111,0.25);}
+.proj-thumb{height:130px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;}
+.proj-body{padding:20px;}
+.proj-type{font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--teal);letter-spacing:0.09em;text-transform:uppercase;margin-bottom:6px;}
+.proj-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:7px;line-height:1.2;}
+.proj-desc{color:var(--muted);font-size:0.81rem;line-height:1.65;margin-bottom:12px;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;}
+.proj-links{display:flex;gap:8px;}
+.lnk{font-size:0.76rem;font-weight:500;padding:6px 13px;border-radius:6px;text-decoration:none;transition:all 0.2s;cursor:pointer;}
+.lnk-solid{background:var(--navy);color:#fff;}
+.lnk-solid:hover{background:var(--navy2);}
+.lnk-ghost{background:var(--bg);color:var(--muted);border:1px solid var(--border);}
+.lnk-ghost:hover{color:var(--navy);}
+
+/* EXPERIENCE */
+.exp-list{margin-bottom:72px;}
+.exp-item{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:26px;margin-bottom:14px;display:grid;grid-template-columns:46px 1fr;gap:18px;align-items:start;transition:border-color 0.25s;}
+.exp-item:hover{border-color:rgba(42,127,111,0.28);}
+.exp-icon{width:46px;height:46px;border-radius:11px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.3rem;border:1px solid var(--border);flex-shrink:0;}
+.exp-yr{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--dim);margin-bottom:3px;}
+.exp-title{font-weight:600;color:var(--navy);font-size:0.95rem;margin-bottom:2px;}
+.exp-co{font-size:0.82rem;color:var(--teal);font-weight:500;margin-bottom:9px;}
+.exp-pts{list-style:none;padding:0;}
+.exp-pts li{color:var(--muted);font-size:0.82rem;padding:3px 0 3px 16px;position:relative;}
+.exp-pts li::before{content:'–';position:absolute;left:0;color:var(--teal);}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-bottom:72px;}
+.contact-intro{color:var(--muted);font-size:0.92rem;line-height:1.8;margin-bottom:24px;}
+.c-items{display:flex;flex-direction:column;gap:10px;}
+.c-item{display:flex;align-items:center;gap:13px;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:13px 16px;text-decoration:none;color:var(--navy);transition:all 0.2s;}
+.c-item:hover{border-color:rgba(42,127,111,0.3);transform:translateX(4px);}
+.c-icon{font-size:1.1rem;flex-shrink:0;}
+.c-lbl{font-size:0.68rem;color:var(--dim);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:2px;}
+.c-val{font-size:0.86rem;font-weight:500;}
+.form{display:flex;flex-direction:column;gap:14px;}
+.f-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;display:block;}
+.f-input,.f-area{width:100%;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--navy);font-family:'Outfit',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s;}
+.f-input:focus,.f-area:focus{border-color:var(--teal);}
+.f-area{resize:vertical;min-height:110px;}
+.btn-submit{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:11px 26px;font-family:'Outfit',sans-serif;font-size:0.86rem;font-weight:600;cursor:pointer;transition:all 0.25s;}
+.btn-submit:hover{background:var(--navy2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(27,45,79,0.16);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:22px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--dim);font-size:0.76rem;}
+footer em{color:var(--teal);font-style:normal;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  .hero-inner,.about-grid,.skills-grid,.projects-grid,.contact-grid{grid-template-columns:1fr;}
+  .hero-card{display:none;}
+  .page{padding:0 20px;}
+  footer{padding:18px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#" onclick="show('home');return false;">AM.</a>
+  <ul class="nav-links">
+    <li><button id="n-home"       onclick="show('home')"       class="active">Home</button></li>
+    <li><button id="n-about"      onclick="show('about')"              >About</button></li>
+    <li><button id="n-skills"     onclick="show('skills')"             >Skills</button></li>
+    <li><button id="n-projects"   onclick="show('projects')"           >Projects</button></li>
+    <li><button id="n-experience" onclick="show('experience')"         >Experience</button></li>
+    <li><button id="n-contact"    onclick="show('contact')"            >Contact</button></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div id="s-home" class="section active">
+<div class="page">
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Open to work</div>
+      <h1 class="hero-name">Aryan<br><em>Mehta</em></h1>
+      <p class="hero-sub">
+        <strong>Full-Stack Engineer</strong> &amp; Product Designer.<br>
+        Building digital products where performance<br>meets purposeful craft.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn btn-solid" onclick="show('projects')">View Work</button>
+        <button class="btn btn-outline" onclick="show('contact')">Let's Talk</button>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <div class="avatar">🧑‍💻</div>
+      <div class="card-name">Aryan Mehta</div>
+      <div class="card-role">Staff Engineer · Mumbai, IN</div>
+      <div class="card-stats">
+        <div class="stat"><div class="stat-n">7+</div><div class="stat-l">Yrs Exp</div></div>
+        <div class="stat"><div class="stat-n">42</div><div class="stat-l">Projects</div></div>
+        <div class="stat"><div class="stat-n">18</div><div class="stat-l">Clients</div></div>
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l">Awards</div></div>
+      </div>
+      <div class="avail"><div class="dot"></div>Available for opportunities</div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div id="s-about" class="section">
+<div class="page">
+  <div class="s-header">
+    <span class="s-tag">Who I am</span>
+    <h2 class="s-title">A little about me</h2>
+    <p class="s-desc">Engineer by training, designer by obsession, builder by nature.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>I'm Aryan Mehta — a Full-Stack Engineer and Product Designer with 7+ years across fintech, SaaS, and health tech. I graduated from IIT Bombay, co-founded a startup, and shipped products used by hundreds of thousands of people.</p>
+      <p>I believe the best software feels inevitable — obvious in hindsight, invisible in use. I care equally about the architecture behind the screen and the pixels on it.</p>
+      <p>Currently exploring senior engineering and fractional CTO opportunities. I respond to every message.</p>
+    </div>
+    <div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-yr">2024 – Present</div>
+          <div class="tl-t">Fractional CTO — Stealth AI Startup</div>
+          <div class="tl-s">Architecture, team-building, seed round prep.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-yr">2021 – 2024</div>
+          <div class="tl-t">Staff Engineer — Razorpay</div>
+          <div class="tl-s">Scaled payments infra to 10M+ TPS.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-yr">2019 – 2021</div>
+          <div class="tl-t">Co-Founder & CTO — PayFlow</div>
+          <div class="tl-s">Built & sold a fintech product. 200K+ users.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-yr">2017 – 2019</div>
+          <div class="tl-t">Engineer II — Flipkart</div>
+          <div class="tl-s">Search ranking & personalisation systems.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-yr">2013 – 2017</div>
+          <div class="tl-t">B.Tech CS — IIT Bombay</div>
+          <div class="tl-s">Graduated with distinction. Dept. rank 2.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SKILLS -->
+<div id="s-skills" class="section">
+<div class="page">
+  <div class="s-header">
+    <span class="s-tag">Expertise</span>
+    <h2 class="s-title">What I bring</h2>
+    <p class="s-desc">A focused stack built over seven years of shipping real products.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="sk-icon">⚛️</div>
+      <div class="sk-name">Frontend</div>
+      <div class="sk-desc">Performant, accessible UIs with modern frameworks and thoughtful animation.</div>
+      <div class="sk-tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Framer</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon">⚙️</div>
+      <div class="sk-name">Backend</div>
+      <div class="sk-desc">Scalable APIs and distributed systems built to handle real-world load.</div>
+      <div class="sk-tags"><span class="tag">Go</span><span class="tag">Node.js</span><span class="tag">GraphQL</span><span class="tag">gRPC</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon">☁️</div>
+      <div class="sk-name">Cloud & DevOps</div>
+      <div class="sk-desc">Infrastructure as code, CI/CD pipelines, and Kubernetes from dev to prod.</div>
+      <div class="sk-tags"><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">K8s</span><span class="tag">Terraform</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon">🗄️</div>
+      <div class="sk-name">Data</div>
+      <div class="sk-desc">Schema design and query optimisation across relational, document, and time-series stores.</div>
+      <div class="sk-tags"><span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">Kafka</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon">🤖</div>
+      <div class="sk-name">AI / LLMs</div>
+      <div class="sk-desc">RAG pipelines, LLM integrations, and AI-native features shipped to production.</div>
+      <div class="sk-tags"><span class="tag">LangChain</span><span class="tag">OpenAI</span><span class="tag">Pinecone</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="sk-icon">🎨</div>
+      <div class="sk-name">Design</div>
+      <div class="sk-desc">From wireframe to high-fidelity. Design systems that scale across teams.</div>
+      <div class="sk-tags"><span class="tag">Figma</span><span class="tag">UX Research</span><span class="tag">Systems</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PROJECTS -->
+<div id="s-projects" class="section">
+<div class="page">
+  <div class="s-header">
+    <span class="s-tag">Work</span>
+    <h2 class="s-title">Selected Projects</h2>
+    <p class="s-desc">A curated set of things I'm proud to have built.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#e6f4f1,#c8e6e0);">💳</div>
+      <div class="proj-body">
+        <div class="proj-type">Fintech · Acquired 2021</div>
+        <div class="proj-title">PayFlow</div>
+        <div class="proj-desc">A unified UPI payments OS for consumers and SMEs. Scaled to 200K+ users before acquisition by Razorpay.</div>
+        <div class="proj-tags"><span class="tag">Next.js</span><span class="tag">Go</span><span class="tag">Kafka</span><span class="tag">AWS</span></div>
+        <div class="proj-links"><a href="#" class="lnk lnk-solid">Case Study</a><a href="#" class="lnk lnk-ghost">GitHub</a></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#eef1f8,#d6deee);">🧠</div>
+      <div class="proj-body">
+        <div class="proj-type">AI · Open Source · 4.2K ★</div>
+        <div class="proj-title">Cortex</div>
+        <div class="proj-desc">An LLM-powered GitHub PR reviewer with a RAG pipeline over your codebase for architecture-aware feedback.</div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">OpenAI</span></div>
+        <div class="proj-links"><a href="#" class="lnk lnk-solid">Live Demo</a><a href="#" class="lnk lnk-ghost">GitHub</a></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#f0f4f0,#d8e8d8);">🌿</div>
+      <div class="proj-body">
+        <div class="proj-type">Health Tech · 50K Downloads · 4.8★</div>
+        <div class="proj-title">Verdant</div>
+        <div class="proj-desc">A mental wellness app for the Indian market with habit tracking, meditation, and an AI therapy companion.</div>
+        <div class="proj-tags"><span class="tag">React Native</span><span class="tag">Node.js</span><span class="tag">Claude API</span></div>
+        <div class="proj-links"><a href="#" class="lnk lnk-solid">App Store</a><a href="#" class="lnk lnk-ghost">Case Study</a></div>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-thumb" style="background:linear-gradient(135deg,#f5f0ea,#e8ddd0);">📊</div>
+      <div class="proj-body">
+        <div class="proj-type">SaaS · $28K MRR · &lt;80ms latency</div>
+        <div class="proj-title">Prism Analytics</div>
+        <div class="proj-desc">No-code real-time analytics for non-technical founders. AI-generated insight summaries and custom KPI builders.</div>
+        <div class="proj-tags"><span class="tag">React</span><span class="tag">ClickHouse</span><span class="tag">WebSockets</span></div>
+        <div class="proj-links"><a href="#" class="lnk lnk-solid">Live Demo</a><a href="#" class="lnk lnk-ghost">Docs</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="s-experience" class="section">
+<div class="page">
+  <div class="s-header">
+    <span class="s-tag">Career</span>
+    <h2 class="s-title">Experience</h2>
+    <p class="s-desc">Seven years across startups, scale-ups, and enterprises.</p>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-icon">🚀</div>
+      <div>
+        <div class="exp-yr">Jan 2024 — Present</div>
+        <div class="exp-title">Fractional CTO & Principal Advisor</div>
+        <div class="exp-co">Stealth AI Startup, Remote</div>
+        <ul class="exp-pts">
+          <li>Architected a multi-tenant RAG-powered document intelligence system from scratch.</li>
+          <li>Led a remote team of 8 engineers across 3 time zones.</li>
+          <li>Shaped the technical narrative for an in-progress $1.2M seed round.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon">💙</div>
+      <div>
+        <div class="exp-yr">Aug 2021 — Dec 2023</div>
+        <div class="exp-title">Staff Software Engineer</div>
+        <div class="exp-co">Razorpay, Bengaluru</div>
+        <ul class="exp-pts">
+          <li>Scaled transaction processing from 2M to 10M+ TPS with zero-downtime migrations.</li>
+          <li>Cut P99 payment latency from 420ms to 89ms via routing engine re-architecture.</li>
+          <li>Shipped the international checkout product as cross-functional tech lead.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon">💳</div>
+      <div>
+        <div class="exp-yr">Mar 2019 — Jul 2021</div>
+        <div class="exp-title">Co-Founder & CTO</div>
+        <div class="exp-co">PayFlow Technologies, Mumbai</div>
+        <ul class="exp-pts">
+          <li>Built the entire product from scratch — backend, mobile app, and web dashboard.</li>
+          <li>Raised ₹3Cr in angel funding; grew to 200K MAU; closed acquisition with Razorpay.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon">🛒</div>
+      <div>
+        <div class="exp-yr">Jul 2017 — Feb 2019</div>
+        <div class="exp-title">Software Engineer II</div>
+        <div class="exp-co">Flipkart, Bengaluru</div>
+        <ul class="exp-pts">
+          <li>Improved search CTR by 18% through ML-based ranking experiments.</li>
+          <li>Built a real-time personalisation service handling 50M+ daily queries.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div id="s-contact" class="section">
+<div class="page">
+  <div class="s-header">
+    <span class="s-tag">Let's connect</span>
+    <h2 class="s-title">Get in Touch</h2>
+    <p class="s-desc">A role, a collaboration, or just a conversation — reach out anytime.</p>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-intro">I'm open to senior engineering roles and fractional CTO engagements. I respond to every message within 24 hours.</p>
+      <div class="c-items">
+        <a href="mailto:aryan@aryanmehta.dev" class="c-item">
+          <div class="c-icon">✉️</div><div><div class="c-lbl">Email</div><div class="c-val">aryan@aryanmehta.dev</div></div>
+        </a>
+        <a href="tel:+919876543210" class="c-item">
+          <div class="c-icon">📞</div><div><div class="c-lbl">Phone</div><div class="c-val">+91 98765 43210</div></div>
+        </a>
+        <a href="#" class="c-item">
+          <div class="c-icon">💼</div><div><div class="c-lbl">LinkedIn</div><div class="c-val">linkedin.com/in/aryanmehta</div></div>
+        </a>
+        <a href="#" class="c-item">
+          <div class="c-icon">🐙</div><div><div class="c-lbl">GitHub</div><div class="c-val">github.com/aryan-mehta</div></div>
+        </a>
+        <div class="c-item" style="cursor:default;">
+          <div class="c-icon">📍</div><div><div class="c-lbl">Location</div><div class="c-val">Mumbai, Maharashtra, India</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="form">
+      <div><label class="f-label">Name</label><input class="f-input" type="text" placeholder="Jane Smith"></div>
+      <div><label class="f-label">Email</label><input class="f-input" type="email" placeholder="jane@company.com"></div>
+      <div><label class="f-label">Message</label><textarea class="f-area" placeholder="Tell me about your project or opportunity…"></textarea></div>
+      <button class="btn-submit" onclick="sent(this)">Send Message →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 <em>Aryan Mehta</em>. All rights reserved.</span>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--dim);">Mumbai · India</span>
+</footer>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+  document.getElementById('s-' + id).classList.add('active');
+  document.getElementById('n-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function sent(btn) {
+  btn.textContent = '✓ Message Sent!';
+  btn.style.background = 'var(--teal)';
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; }, 3000);
+}
+</script>
+</body>
+</html>
